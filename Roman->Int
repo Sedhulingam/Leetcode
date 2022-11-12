@@ -1,0 +1,61 @@
+class Solution:
+    def romanToInt(self,s):
+            val=0
+            count=0
+            for i in s:
+                if(i=='I'):
+                    val+=1
+                    count+=1
+                if(i=='V'):        
+                    if(count-1 >= 0 and s[count-1]=='I'):                   
+                        val=val-1
+                        val=val+4
+                        count+=1
+                    else:
+                        val+=5
+                        count+=1                      
+                if(i=='X'):
+                    if(count-1>=0 and s[count-1]=='I'):
+                        val=val-1
+                        val+=9
+                        count+=1
+                    else:
+                        val+=10
+                        count+=1                       
+                if(i=='L'):
+                    if(count-1>=0 and s[count-1]=='X'):
+                        val=val-10
+                        val+=40
+                        count+=1
+                    else:
+                        val+=50
+                        count+=1                     
+                if(i=='C'):
+                    if(count-1>=0 and s[count-1]=='X'):
+                        val=val-10
+                        val+=90
+                        count+=1
+                    else:
+                        val+=100
+                        count+=1
+                if(i=='D'):
+                    if(count-1>=0 and s[count-1]=='C'):
+                        val=val-100
+                        val+=400
+                        count+=1
+                    else:
+                        val+=500
+                        count+=1                        
+                if(i=='M'):
+                    if(count-1>=0 and s[count-1]=='C'):
+                        val=val-100
+                        val+=900
+                        count+=1                   
+                    else:
+                        val+=1000
+                        count+=1
+            return val                
+
+s=Solution()
+a=s.romanToInt('MCMXCIV')
+print(a)
